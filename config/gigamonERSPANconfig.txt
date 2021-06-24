@@ -1,0 +1,284 @@
+## Running database "initialbackupgigamon"
+## Generated at 2019/04/24 23:30:00 +0000
+## Software version on which this output was taken: GigaVUE-OS 5.4.02 116172 2019-01-11 00:49:35
+## Hostname: tap.[state].cmat.lan
+##
+## Note: If you are not an admin user some command invocations may be omitted
+## because you do not have permissions to see them.
+##
+
+##
+## Network interface configuration
+##
+interface eth0
+  create
+  comment ""
+  no dhcp
+  display
+  duplex auto
+  ip address 10.[state].10.5 /24
+  mtu 1500
+  no shutdown
+  speed auto
+  no zeroconf
+  exit
+
+##
+## Network interface IPv6 configuration
+##
+interface eth0
+  no ipv6 address autoconfig
+  ipv6 address autoconfig default
+  no ipv6 address autoconfig privacy
+  no ipv6 dhcp client enable
+  ipv6 enable
+  exit
+
+##
+## Routing configuration
+##
+ip default-gateway 10.[state].10.1 eth0
+
+##
+## Other IP configuration
+##
+hostname tap.[state].cmat.lan
+ip domain-list cmat.lan
+
+##
+## Other IPv6 configuration
+##
+no ipv6 enable
+
+##
+## Local user account configuration
+##
+username admin password 7 $1$T17cSL43$gqSk5v5I9fMZAqQdupy.g1
+
+##
+## AAA remote server configuration
+##
+# ldap bind-password ********
+# radius-server key ********
+# tacacs-server key ********
+
+##
+## Chassis level configurations
+##
+chassis box-id 2 serial-num H06D1 type hc1 gdp disable
+
+##
+## Card level configurations
+##
+card slot 2/1  product-code 132-00D7
+card slot 2/2  product-code 132-00D8
+card slot 2/cc1  product-code 132-00D6
+
+##
+## Port level configurations
+##
+port 2/1/g1 type tool
+port 2/1/g1 params admin enable
+port 2/1/g2 type tool
+port 2/1/g2 params admin enable
+port 2/1/g3 type tool
+port 2/1/g3 params admin enable
+port 2/1/g4 type tool
+port 2/1/g4 params admin enable
+port 2/1/x1 type network
+port 2/1/x1 params admin enable
+port 2/1/x2 type network
+port 2/1/x3 type network
+port 2/1/x3 alias WA
+port 2/1/x3 params admin enable autoneg enable
+port 2/1/x4 type network
+port 2/1/x5 type network
+port 2/1/x5 alias HI
+port 2/1/x5 params admin enable autoneg enable
+port 2/1/x6 type network
+port 2/1/x7 type network
+port 2/1/x7 alias OHIO
+port 2/1/x7 params admin enable autoneg enable
+port 2/1/x8 type network
+port 2/1/x9 type network
+port 2/1/x9 params admin enable
+port 2/1/x10 type network
+port 2/1/x11 type network
+port 2/1/x11 params admin enable
+port 2/1/x12 type network
+port 2/2/g1 type network
+port 2/2/g1 params taptx active discovery all
+port 2/2/g1 ingress-vlan-tag 1752
+port 2/2/g2 type network
+port 2/2/g2 params taptx active discovery all
+port 2/2/g2 ingress-vlan-tag 10
+port 2/2/g3 type network
+port 2/2/g3 params taptx passive
+port 2/2/g4 type network
+port 2/2/g4 params taptx passive
+port 2/2/g5 type network
+port 2/2/g5 params taptx passive
+port 2/2/g6 type network
+port 2/2/g6 params taptx passive
+port 2/2/g7 type inline-net
+port 2/2/g8 type inline-net
+port 2/2/g8 params discovery all
+
+##
+## Gigastream hash configurations
+##
+gigastream advanced-hash slot 2/cc1 default
+
+##
+## Gsgroup configurations
+##
+gsgroup alias GS_Group port-list 2/1/e1
+
+##
+## Tunnel configurations
+##
+tunneled-port 2/1/x3 ip 88.84.22.207 255.255.255.0 gateway 88.84.22.254 mtu 1500 port-list GS_Group
+tunneled-port 2/1/x5 ip 88.84.7.207 255.255.255.0 gateway 88.84.7.254 mtu 1500 port-list GS_Group
+tunneled-port 2/1/x7 ip 88.84.17.207 255.255.255.0 gateway 88.84.17.254 mtu 1500 port-list GS_Group
+
+##
+## Gs params configurations
+##
+gsparams gsgroup GS_Group
+  cpu utilization type total rising 80
+  dedup-action drop
+  dedup-ip-tclass include
+  dedup-ip-tos include
+  dedup-tcp-seq include
+  dedup-timer 50000
+  dedup-vlan ignore
+  eng-watchdog-timer disable
+  erspan3-timestamp format none
+  flow-mask disable
+  flow-sampling-rate 5
+  flow-sampling-timeout 1
+  flow-sampling-type device-ip
+  generic-session-timeout 5
+  gtp-control-sample enable
+  gtp-flow timeout 48
+  gtp-persistence disable
+  gtp-persistence file-age-timeout 30
+  gtp-persistence interval 10
+  gtp-persistence restart-age-time 30
+  ip-frag forward enable
+  ip-frag frag-timeout 10
+  ip-frag head-session-timeout 30
+  lb failover disable
+  lb failover-thres lt-bw 80
+  lb failover-thres lt-pkt-rate 1000
+  lb replicate-gtp-c disable
+  lb use-link-spd-wt disable
+  resource buffer-asf disable
+  resource cpu overload-threshold 90
+  resource hsm-ssl buffer disable
+  resource hsm-ssl packet-buffer 1000
+  resource packet-buffer overload-threshold 80
+  resource xpkt-pmatch num-flows 0
+  sip-media timeout 30
+  sip-session timeout 30
+  sip-tcp-idle-timeout 20
+  ssl-decrypt decrypt-fail-action drop
+  ssl-decrypt enable
+  ssl-decrypt hsm-pkcs11 dynamic-object enable
+  ssl-decrypt hsm-pkcs11 load-sharing enable
+  ssl-decrypt hsm-timeout 1000
+  ssl-decrypt key-cache-timeout 10800
+  ssl-decrypt non-ssl-traffic drop
+  ssl-decrypt pending-session-timeout 60
+  ssl-decrypt session-timeout 300
+  ssl-decrypt tcp-syn-timeout 20
+  ssl-decrypt ticket-cache-timeout 10800
+  tunnel-arp-timeout 600
+  tunnel-health-check action pass
+  tunnel-health-check disable
+  tunnel-health-check dstport 54321
+  tunnel-health-check interval 600
+  tunnel-health-check protocol icmp
+  tunnel-health-check rcvport 54321
+  tunnel-health-check retries 5
+  tunnel-health-check roundtriptime 1
+  tunnel-health-check srcport 54321
+  tunnel-ndp-timeout 600
+  xpkt-pmatch disable
+  exit
+
+##
+## Gsop configurations
+##
+gsop alias gsopohv1 tunnel-decap type erspan flow-id 0 port-list GS_Group
+
+##
+## Traffic map connection configurations
+##
+map alias HI_Span
+  type regular byRule
+  roles replace admin to owner_roles
+  use gsop gsopohv1
+  rule add pass ipver 4
+  rule add pass ipver 6
+  to 2/1/g3,2/1/g4
+  from 2/1/x5
+  exit
+map alias OH_Span
+  type regular byRule
+  roles replace admin to owner_roles
+  use gsop gsopohv1
+  rule add pass ipver 4
+  rule add pass ipver 6
+  to 2/1/g2,2/1/g3
+  from 2/1/x7
+  exit
+map alias WA_Span
+  type regular byRule
+  roles replace admin to owner_roles
+  use gsop gsopohv1
+  rule add pass ipver 4
+  rule add pass ipver 6
+  to 2/1/g3,2/1/g1
+  from 2/1/x3
+  exit
+
+##
+## X.509 certificates configuration
+##
+#
+# Certificate name system-self-signed, ID 111a12e6ab1b080379e4b23d75c991209c5a3548
+# (public-cert config omitted since private-key config is hidden)
+
+crypto certificate generation default email-addr admin
+
+##
+## Web configuration
+##
+# web proxy auth basic password ********
+
+##
+## System configuration
+##
+system security passwords enhanced
+system security passwords min-length 16
+
+##
+## Time/NTP configuration
+##
+ntp server 10.[state].10.1 disable
+ntp server 10.[state].10.1 key 1
+ntp server 10.[state].10.1 keys enable
+ntp server 10.[state].10.1 version 4
+
+##
+## CLI configuration
+##
+no cli default paging enable
+
+##
+## E-mail configuration
+##
+# email auth password ********
+# email autosupport auth password ********
+tap.[state].cmat.lan #

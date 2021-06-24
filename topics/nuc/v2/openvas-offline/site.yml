@@ -1,0 +1,17 @@
+# vim: set ft=ansible
+# site.yml
+---
+# add any additional mirrors if you need to otherwise leave default so it will only deploy on localhost
+- hosts: nvt_mirrors
+  become: true
+  tasks:
+    - include: prepare_system.yml
+      tags:
+        - prepare_system
+    - include: create_local_nvt.yml
+      tags:
+        - create_local_nvt
+
+    - include: create_atomic_repo.yml
+      tags:
+        - create_local_nvt

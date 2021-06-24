@@ -1,0 +1,11 @@
+- block:
+    - name: Create folder for the nvt mirror
+      file:
+        path: "/var/www/html/nvt"
+        state: directory
+        mode: 0755
+
+    - name: Create the nvt mirror
+      shell: "wget -O /var/www/html/nvt/community-nvt-feed-current.tar.bz2 http://dl.greenbone.net/community-nvt-feed-current.tar.bz2"
+
+  become: true

@@ -1,0 +1,2 @@
+# Images
+Directory for images.

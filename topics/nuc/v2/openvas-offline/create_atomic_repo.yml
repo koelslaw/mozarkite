@@ -1,0 +1,11 @@
+- block:
+    - name: Create folder for the mirror
+      file:
+        path: "/var/www/html/atomic"
+        state: directory
+        mode: 0755
+
+    - name: Execute repository creation script
+      script: "./scripts/create_repo.sh"
+
+  become: true

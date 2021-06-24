@@ -1,0 +1,238 @@
+Building configuration...
+
+
+Current configuration : 5059 bytes
+!
+! Last configuration change at 09:01:55 CST Wed Jan 9 2019
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+!
+hostname gateway.[State].cmat.lan
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 5 $1$YL/f$X0SXJQrPyLe8phBlGJmOq1
+!
+aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone CST -6 0
+clock summer-time CST recurring
+clock calendar-valid
+!
+!
+!
+!
+!
+!
+!
+ip host switch.[State].cmat.lan 10.[state].10.3
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1123779263
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1123779263
+ revocation-check none
+ rsakeypair TP-self-signed-1123779263
+!
+crypto pki trustpoint TP-self-signed-1349810103
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1349810103
+ revocation-check none
+ rsakeypair TP-self-signed-1349810103
+!
+!
+crypto pki certificate chain TP-self-signed-1123779263
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31313233 37373932 3633301E 170D3138 31313238 32313432
+  30345A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 31323337
+  37393236 33308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201
+  0A028201 0100C0E0 79BEBC54 1B992736 976C943C 8F0324B1 2AE93D6D 9DF116CE
+  CC8E8A08 684C1FEE 4E15C5A5 CA8AA19E 013DB3C9 525B1F70 3A016DF1 0F77DAF1
+  640BDB68 141A04BF E19A631A A1CFB8C6 D0FD7109 C26B1E0D 5E39F678 A25EC310
+  A520F6A8 651C3383 21223B09 7BED2CA8 060E717F 6F253B8F 36457A45 85483F7A
+  B9BB543B F2427F32 B7AC1D09 96C080E1 9D44E8E4 FB9E4347 C3929BF8 9730B17E
+  D30E8E13 8272D739 04B9F295 2803A660 524004AB 2A66F84D 119F687A 5CB8965C
+  BF488970 1A33C154 0C365591 718E5E25 5C998592 F91860B5 D582EAD2 86BC69FA
+  7394E3A6 0DB23EAB A527C3B0 FAFDB15B 79513E63 31AF50B0 C271386F 866A62C8
+  D86D06EE 03210203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF
+  301F0603 551D2304 18301680 141D516F 565EAE77 FF14C97D AB697490 D4E130B7
+  DC301D06 03551D0E 04160414 1D516F56 5EAE77FF 14C97DAB 697490D4 E130B7DC
+  300D0609 2A864886 F70D0101 05050003 82010100 9B732708 621D9397 7E2E2D5C
+  4B564984 FC27FDCE 378048FD E280A280 D4DDF66C 57AD2DA9 267A7FDC 4A2055C3
+  1C39D7F6 45B6EA2F B24834E5 920D7C7D F8B7F2CF 339B9B05 0D86786B 90912131
+  CD7D8352 36367B5D 1EFA6079 6A917046 8F5B46D7 64D2DE27 4A64B2B4 A5C7BD02
+  9CC4043D 16B2C381 5F8A62AD A25C546A 28DF3BAF 872CD19D 00E2A84E 6B4767E8
+  6ADD1F0B CFBA83BE 10650307 349216E9 054DDBC3 CD5950A2 B4F4977A EC87E0EE
+  D95EEA5B E710D891 2326A978 AD74A449 43F04DA3 06C67A07 0966B797 903703FA
+  41A8CB04 E5EF61F8 7CA83425 828244F1 3891EAB3 F1BD3FE3 5A8E71D0 9E9ACFA6
+  CDFA7A96 8DD11044 ED73F6FE 680DE01F 276B88E4
+  	quit
+crypto pki certificate chain TP-self-signed-1349810103
+!
+!
+license udi pid ISR4321/K9 sn FLM224103AR
+license boot suite FoundationSuiteK9
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username xadmin privilege 15 password 0 CYBERadmin1234!@#$
+username admin privilege 15 secret 5 $1$ot0b$gBB6F1EORW8heS1TuApW/1
+!
+redundancy
+ mode none
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address dhcp
+ ip nat outside
+ negotiation auto
+ spanning-tree portfast trunk
+!
+interface GigabitEthernet0/0/1
+ description Internal Gateway
+ no ip address
+ negotiation auto
+ spanning-tree portfast disable
+!
+interface GigabitEthernet0/0/1.2
+ description xr_routing
+ encapsulation dot1Q 2
+ ip address 10.[state].2.1 255.255.255.0
+ ip nat inside
+!
+interface GigabitEthernet0/0/1.20
+ description Active Network
+ encapsulation dot1Q 20
+ ip address 10.[state].20.1 255.255.255.0
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ negotiation auto
+!
+!
+router eigrp 100
+ network 0.0.0.0
+ network 10.[state].2.0 0.0.0.255
+ network 10.[state].20.0 0.0.0.255
+ redistribute static
+ redistribute connected
+ passive-interface GigabitEthernet0/0/0
+!
+ip nat inside source list NAT interface GigabitEthernet0/0/0 overload
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip tftp source-interface GigabitEthernet0
+ip dns server
+!
+ip ssh rsa keypair-name ssh-hostkey-rsa4096
+ip ssh version 2
+!
+!
+ip access-list extended NAT
+ deny   ip 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255
+ permit ip 10.0.0.0 0.255.255.255 any
+!
+!
+route-map track-primary-if permit 1
+ match ip address 197
+ set interface GigabitEthernet0/0/0
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ transport input none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ length 0
+!
+ntp master
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+end

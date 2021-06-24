@@ -1,0 +1,23 @@
+# vim: set ft=ansible
+# site.yml
+---
+# add any additional mirrors if you need to otherwise leave default so it will only deploy on localhost
+- hosts: repo_mirrors
+  become: true
+  vars_files:
+    - "./vars/main.yml"
+  tasks:
+    - include: prepare_system.yml
+      tags:
+        - prepare_system
+    - include: create_mirror.yml
+      tags:
+        - create_mirror
+    - include: prepare_cron.yml
+      when: repo_autosync|bool == True
+      tags:
+        - prepare_cron
+    - include: remove_cron.yml
+      when: repo_autosync|bool == False
+      tags:
+        - prepare_cron

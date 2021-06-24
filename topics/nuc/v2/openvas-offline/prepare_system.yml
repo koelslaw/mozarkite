@@ -1,0 +1,9 @@
+- block:
+    - name: Install needed packages for nvt sync
+      package:
+          name: "{{ item }}"
+          state: present
+      with_items:
+          - wget
+          - httpd
+  become: true

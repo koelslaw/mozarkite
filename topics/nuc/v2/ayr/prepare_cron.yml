@@ -1,0 +1,11 @@
+- name: Prepare cronjob for autosync
+  cron:
+      day: "{{ crontab_day }}"
+      hour: "{{ crontab_hour }}"
+      minute: "{{ crontab_minute }}"
+      month: "{{ crontab_month }}"
+      weekday: "{{ crontab_weekday }}"
+      name: "Cronjob to autosync repo"
+      state: present
+      job: "sudo ansible-playbook ~/ayr/site.yml --tags=create_mirror -i ~/ayr/hosts.ini > /dev/null"
+  become: true

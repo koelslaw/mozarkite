@@ -1,0 +1,13 @@
+- block:
+    - name: Create folder for the mirror
+      file:
+        path: "/var/www/html/{{ item['folder'] }}"
+        state: directory
+        mode: 0755
+      with_items: "{{ mirrors }}"
+
+    - name: Execute repository creation script
+      script: "./scripts/create_repo.sh {{ item['folder'] }} {{ item['items']|join(',') }}" 
+      with_items: "{{ mirrors }}"  
+
+  become: true
