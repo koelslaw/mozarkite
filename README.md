@@ -20,8 +20,6 @@ This documentation was made with the best effort on a short timeline. Most of th
 
 If you are reading this in a pdf, then you are likely reading it in a quick start guide. To get the latest, you need to request an account with the website below:
 
-- https://www.di2e.net - send a message to the owner -> kirk.s.koelzer.mil@mail.mil
-
 
 ## Table of Contents
 
